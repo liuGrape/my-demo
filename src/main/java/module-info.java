@@ -1,5 +1,4 @@
 module liugrape.game.battle {
-    //liuGrapeDevelopment
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
