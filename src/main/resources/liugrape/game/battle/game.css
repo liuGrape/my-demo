@@ -1,11 +1,18 @@
 .app-root {
-    -fx-background-color: linear-gradient(to bottom right, #edf8ee, #dcefe0);
+    -fx-background-image: url("../../../image/游戏主页贴图.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
     -fx-padding: 28;
 }
+
+
+
 .screen {
     -fx-alignment: center;
     -fx-spacing: 38;
 }
+
 .card {
     -fx-background-color: rgba(255, 255, 255, 0.96);
     -fx-background-radius: 2;
@@ -14,27 +21,32 @@
     -fx-padding: 40;
     -fx-pref-width: 390;
 }
+
 .game-title {
     -fx-font-size: 28;
     -fx-font-weight: bold;
     -fx-text-fill: #285c31;
     -fx-font-family: "Microsoft YaHei", sans-serif;
 }
+
 .welcome-title {
     -fx-font-size: 25;
     -fx-font-weight: bold;
     -fx-text-fill: #285c31;
     -fx-font-family: "Microsoft YaHei", sans-serif;
 }
+
 .subtitle {
     -fx-font-size: 14;
     -fx-text-fill: #657568;
 }
+
 .field-label {
     -fx-font-size: 14;
     -fx-font-weight: bold;
     -fx-text-fill: #344b38;
 }
+
 .name-field {
     -fx-background-color: #f5f8f5;
     -fx-background-radius: 0;
@@ -43,11 +55,13 @@
     -fx-font-size: 14;
     -fx-padding: 12;
 }
+
 .message {
     -fx-font-size: 12;
     -fx-text-fill: #aa543c;
     -fx-wrap-text: true;
 }
+
 /* Minecraft Java 主按钮风格 原版浮雕 */
 .primary-button {
     -fx-background-color: #39864b;
@@ -60,14 +74,17 @@
     -fx-padding: 13 18;
     -fx-background-radius: 0;
 }
+
 .primary-button:hover {
     -fx-background-color: #479c5a;
     -fx-border-color: #80d28f #286b36 #286b36 #80d28f;
 }
+
 .primary-button:pressed {
     -fx-background-color: #2f743f;
     -fx-border-color: #1f582b #66bb77 #66bb77 #1f582b;
 }
+
 /* Minecraft Java 次要按钮 */
 .secondary-button {
     -fx-background-color: #7a8a7b;
@@ -79,10 +96,12 @@
     -fx-padding: 11 18;
     -fx-background-radius:0;
 }
+
 .secondary-button:hover {
     -fx-background-color: #8c9c8d;
     -fx-border-color: #c5d6c6 #5a685b #5a685b #c5d6c6;
 }
+
 .secondary-button:pressed {
     -fx-background-color: #657366;
     -fx-border-color: #49574a #b2c4b3 #b2c4b3 #49574a;

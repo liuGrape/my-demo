@@ -13,6 +13,6 @@ module liugrape.game.battle {
     requires com.almasb.fxgl.all;
     requires java.desktop;
 
-    opens liugrape.game.battle to javafx.fxml;
+    opens liugrape.game.battle to javafx.fxml, com.google.gson;
     exports liugrape.game.battle;
 }

@@ -3,8 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import java.net.URL?>
@@ -18,7 +16,7 @@
 
     <HBox fx:id="loginView" alignment="CENTER" spacing="42.0" styleClass="screen">
         <VBox alignment="CENTER_LEFT" spacing="18.0" styleClass="card">
-            <Label text="植物大战僵尸" styleClass="game-title"/>
+            <Label text="赵鹏程大战吴梓鳖" styleClass="game-title"/>
             <Label text="欢迎回来，" styleClass="subtitle"/>
             <VBox spacing="8.0">
                 <Label text="玩家昵称" styleClass="field-label"/>
@@ -30,18 +28,12 @@
             <Button maxWidth="Infinity" onAction="#login" text="登录 / 创建玩家"
                     styleClass="primary-button"/>
         </VBox>
-        <ImageView fitHeight="480.0" fitWidth="600.0" preserveRatio="true"
-                   smooth="true" styleClass="hero-image">
-            <image>
-                <Image url="@image/游戏主页贴图.png"/>
-            </image>
-        </ImageView>
     </HBox>
 
     <HBox fx:id="homeView" alignment="CENTER" managed="false" spacing="42.0"
           styleClass="screen" visible="false">
         <VBox alignment="CENTER_LEFT" spacing="20.0" styleClass="card home-card">
-            <Label text="植物大战僵尸" styleClass="game-title"/>
+            <Label text="赵鹏程大战吴梓鳖" styleClass="game-title"/>
             <Label fx:id="welcomeText" text="欢迎！" styleClass="welcome-title"/>
             <Label text="我是个屎上最大傻逼？" styleClass="subtitle"/>
             <Button maxWidth="Infinity" onAction="#startGame" text="开始游戏"
@@ -49,11 +41,5 @@
             <Button maxWidth="Infinity" onAction="#changePlayer" text="切换玩家"
                     styleClass="secondary-button"/>
         </VBox>
-        <ImageView fitHeight="480.0" fitWidth="600.0" preserveRatio="true"
-                   smooth="true" styleClass="hero-image">
-            <image>
-                <Image url="@image/游戏主页贴图.png"/>
-            </image>
-        </ImageView>
     </HBox>
 </HBox>

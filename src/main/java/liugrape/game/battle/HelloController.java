@@ -1,7 +1,6 @@
 package liugrape.game.battle;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,18 +9,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 
 public class HelloController {
     private final Path profilePath = Paths.get(
             System.getProperty("user.home"),
             "liuGrapeDevelopmentData",
             "player.json");
+    private final Gson gson = new Gson();
 
     @FXML
     private HBox loginView;
@@ -42,7 +42,8 @@ public class HelloController {
     private void initialize() {
         try {
             if (Files.exists(profilePath)) {
-                playerNameField.setText(loadPlayerName());
+                PlayerData data = loadPlayerData();
+                playerNameField.setText(data.username);
             } else {
                 loginMessage.setText("首次游玩？请输入你的玩家昵称。");
             }
@@ -82,7 +83,8 @@ public class HelloController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("即将开放");
         alert.setHeaderText("欢迎来到游戏！");
-        alert.setContentText("游戏玩法正在开发中，敬请期待。");
+        //alert.setContentText("游戏玩法正在开发中，敬请期待。");
+        GameMain.openGame();
         alert.showAndWait();
     }
 
@@ -102,17 +104,15 @@ public class HelloController {
         homeView.setManaged(!showLogin);
     }
 
-    private String loadPlayerName() throws IOException {
+    private PlayerData loadPlayerData() throws IOException {
         try {
-            JsonObject profile = JsonParser.parseString(
-                    new String(Files.readAllBytes(profilePath), StandardCharsets.UTF_8))
-                    .getAsJsonObject();
-            if (!profile.has("username") || !profile.get("username").isJsonPrimitive()
-                    || !profile.getAsJsonPrimitive("username").isString()) {
+            String json = Files.readString(profilePath, StandardCharsets.UTF_8);
+            PlayerData data = gson.fromJson(json, PlayerData.class);
+            if (data == null || data.username == null) {
                 throw new IOException("玩家档案格式无效，请重新登录以创建档案。");
             }
-            return profile.get("username").getAsString();
-        } catch (JsonParseException | IllegalStateException e) {
+            return data;
+        } catch (JsonParseException e) {
             throw new IOException("玩家档案格式无效，请重新登录以创建档案。", e);
         }
     }
@@ -120,11 +120,11 @@ public class HelloController {
     private void savePlayerName(String playerName) throws IOException {
         Path parent = profilePath.getParent();
         Files.createDirectories(parent);
-
-        JsonObject profile = new JsonObject();
-        profile.addProperty("username", playerName);
-        Files.write(profilePath, profile.toString().getBytes(StandardCharsets.UTF_8),
-                StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING,
-                StandardOpenOption.WRITE);
+        PlayerData data = new PlayerData();
+        data.username = playerName;
+        String json = gson.toJson(data);
+        try (FileWriter writer = new FileWriter(profilePath.toFile(), StandardCharsets.UTF_8)) {
+            writer.write(json);
+        }
     }
 }
